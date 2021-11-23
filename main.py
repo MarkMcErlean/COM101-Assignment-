@@ -23,8 +23,9 @@ def user_interface():
 def option_one():
     print('You selected option 1: List record titles and details.')
     print('******************************************************')
-    data = open('RECORD_DATA.txt')
-    print(data.readlines())
+
+    # need to download and include txt file when using main PC next time
+
 
 # option 2 - Output a list of record titles and their respective details
 # which are above a user provided price threshold.
