@@ -1,9 +1,9 @@
 # COM101 Assignment 1 coding project
 
-# Creating a basic GUI
+# Creating a basic UI
 
 # defining a variable so that the program will exit when requested
-keep_going = 1
+keep_going = 'y'
 
 
 def user_interface():
@@ -22,6 +22,7 @@ def user_interface():
 # (a) the total number of titles in stock and (b) the value of records in stock.
 def option_one():
     print('You selected option 1: List record titles and details.')
+    print('******************************************************')
 
 
 # option 2 - Output a list of record titles and their respective details
@@ -54,30 +55,36 @@ def option_six():
 
 # option 7 - quit the program
 def option_seven():
+    global keep_going
+    keep_going = 'n'
     print('You selected option 7. Quitting the program...')
 
+
+def options():
+    try:
+        option = int(input())
+        if option == 1:
+            option_one()
+        elif option == 2:
+            option_two()
+        elif option == 3:
+            option_three()
+        elif option == 4:
+            option_four()
+        elif option == 5:
+            option_five()
+        elif option == 6:
+            option_six()
+        elif option == 7:
+            option_seven()
+    except ValueError:
+        print("Oops! that isn't a valid choice!")
 
 # defining the main function that will run each step in the process
 def main():
     user_interface()
-    option = int(input())
-
-    if option == 1:
-        option_one()
-    elif option == 2:
-        option_two()
-    elif option == 3:
-        option_three()
-    elif option == 4:
-        option_four()
-    elif option == 5:
-        option_five()
-    elif option == 6:
-        option_six()
-    elif option == 7:
-        option_seven()
-    else:
-        print('Please enter a valid option')
+    options()
 
 
-main()
+while keep_going == 'y':
+    main()
