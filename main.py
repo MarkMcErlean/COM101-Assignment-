@@ -21,10 +21,22 @@ def user_interface():
 # option 1 - Output a list of record titles and their respective details, including a summary report displaying
 # (a) the total number of titles in stock and (b) the value of records in stock.
 def option_one():
-    print('You selected option 1: List record titles and details.')
-    print('******************************************************')
+    print('You selected option 1: List record titles and details. \n')
+    print('****************************************************** \n')
+    x = open('RECORD_DATA.txt', 'r')
+    #content = x.read()
+    for content in x:
+        read_x = x.readlines()
+        print(read_x)
 
-    # need to download and include txt file when using main PC next time
+    x.close()
+
+
+    input('Press enter to return to the menu...')
+    clear = '\n' * 10  # this is intended to make the screen more readable for the user
+    print(clear)
+
+
 
 
 # option 2 - Output a list of record titles and their respective details
