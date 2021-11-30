@@ -1,4 +1,6 @@
 # COM101 Assignment 1 coding project
+import matplotlib.pyplot as plt
+import numpy as np
 
 # Creating a basic UI
 
@@ -78,11 +80,13 @@ def option_two():
     clear_screen()
 
 
+genres = []
+genre_tally = {}
+
+
 # option 3 - Output a report giving the number of records existing in each genre type.
-def display_genre_tally():
+def genre_tally_function():
     # create a dictionary for genres
-    genres = []
-    genre_tally = {}
     # if read_data has not already been called, do so here
     if not file_contents_record_data:
         read_data()
@@ -98,6 +102,8 @@ def display_genre_tally():
         else:
             genre_tally[each_genre] = 1
 
+
+def show_genre_tally():
     for key, value in genre_tally.items():
         print(key, value, sep=':')
 
@@ -175,7 +181,6 @@ def option_five():
                     else:
                         print('You cannot add negative stock...')
 
-
         elif choice == 2:
             temp_stock = int(input('How many vinyls were sold: '))
             if temp_stock < 0:
@@ -204,6 +209,32 @@ def option_five():
 # option 6 - Plot a labelled bar chart that presents the number of titles existing in each genre type.
 def option_six():
     print('You selected option 6: Display visual chart of vinyls on record.')
+    labels = []
+    bar_values = []
+
+    if not file_contents_record_data:
+        read_data()
+    genre_tally_function()
+
+    for label, value in genre_tally.items():
+        labels.append(label)
+        bar_values.append(value)
+
+    x = np.arange(len(labels))
+    width = 0.35
+
+    fig, ax = plt.subplots()
+    ax.bar(x - width/7, bar_values, width, label='label')
+
+    ax.set_ylabel('test')
+    ax.set_title('test2')
+    ax.set_xticks(x)
+    ax.set_xticklabels(labels)
+    ax.legend()
+
+    fig.tight_layout()
+    plt.show()
+    clear_screen()
 
 
 # option 7 - quit the program
@@ -228,7 +259,8 @@ def options():
         elif option == 3:
             print('You selected option 3: Report of record quantities in each genre.')
             print('****************************************************** \n')
-            display_genre_tally()
+            genre_tally_function()
+            show_genre_tally()
         elif option == 4:
             option_four()
         elif option == 5:
