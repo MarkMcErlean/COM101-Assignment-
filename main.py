@@ -136,13 +136,74 @@ def option_five():
     print('You selected option 5: Check record availability.')
     if not file_contents_record_data:
         read_data()
+    query_record_titles = ' ' + input("Enter a record title: ")
+    titles = []
+    stock = []
+    titles_in_stock = {}
+    count = 0
+
+    # consider stripping the blank space from the titles list before searching
+    if not titles:
+        for each_row in file_contents_record_data:
+            titles.append(each_row[1].lower())  # parsing through each row and adding record titles to list
+            stock.append(each_row[5])  # adding stock levels to a list
+    if not titles_in_stock:
+        for names in titles:
+            titles_in_stock[names] = stock[count]
+            count += 1
+
+    if query_record_titles.lower() in titles:
+        print('Record found! there are', titles_in_stock.get(query_record_titles, 'Record not found'), 'in stock')
+
+        print("1: Increase stock levels")
+        print("2: Decrease stock levels")
+        print("3: Return to main menu")
+
+        choice = int(input("Select an option: "))
+        if choice == 1:
+            temp_stock = int(input("How many vinyls are to be added to stock: "))
+            if temp_stock < 0:
+                print('Must be a positive number only')
+                option_five()
+            current_stock = int(titles_in_stock.get(query_record_titles))
+            new_stock = current_stock + temp_stock
+
+            for temporary in file_contents_record_data:
+                if query_record_titles.lower() in temporary[1].lower():
+                    if temporary[5] + new_stock >= temporary[5]:
+                        temporary[5] = new_stock
+                    else:
+                        print('You cannot add negative stock...')
 
 
+        elif choice == 2:
+            temp_stock = int(input('How many vinyls were sold: '))
+            if temp_stock < 0:
+                print('Must be a positive number only')
+                option_five()
+            current_stock = int(titles_in_stock.get(query_record_titles))
+            new_stock = current_stock - temp_stock
+
+            for temporary in file_contents_record_data:
+                if query_record_titles.lower() in temporary[1].lower():
+                    if temporary[5] - new_stock >= 0:
+                        temporary[5] = new_stock
+                    else:
+                        print('number entered is more than stock available')
+                        clear_screen()
+
+        elif choice == 3:
+            clear_screen()
+            options()
+
+    else:
+        print('Item not found, please return to the menu to add this item...')
+        clear_screen()
 
 
 # option 6 - Plot a labelled bar chart that presents the number of titles existing in each genre type.
 def option_six():
-    print('You selected option 6: display visual chart of vinyls on record.')
+    print('You selected option 6: Display visual chart of vinyls on record.')
 
 
 # option 7 - quit the program
