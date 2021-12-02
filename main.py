@@ -116,6 +116,9 @@ def option_four():
     print('You selected option 4: Add a new record and display summary report.')
     new_listing = []
     new_listing_qty = int(input('How many listings would you like to add: '))
+    if new_listing_qty <= 0:
+        print('Invalid input, try again. ')
+        option_four()
     if not new_listing:
         artist, title, genre, length, condition, stock, cost = 0, 0, 0, 0, 0, 0, 0
         # if read_data has not already been called, do so here
@@ -235,6 +238,7 @@ def option_six():
     fig.tight_layout()
     plt.show()
     clear_screen()
+    # Need to write in a way to exit the graph so that the rest of the program can continue
 
 
 # option 7 - quit the program
@@ -271,6 +275,7 @@ def options():
             option_seven()
     except ValueError:
         print("Oops! that isn't a valid choice!")
+        clear_screen()
 
 
 # defining the main function that will run each step in the process
