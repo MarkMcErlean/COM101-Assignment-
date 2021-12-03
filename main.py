@@ -1,6 +1,6 @@
 # COM101 Assignment 1 coding project
 import matplotlib.pyplot as plt
-import numpy as np
+# import numpy as np
 
 # Creating a basic UI
 
@@ -20,7 +20,6 @@ def user_interface():
     print('7. Quit')
 
 
-# creating each user option
 # option 1 - Output a list of record titles and their respective details, including a summary report displaying
 # (a) the total number of titles in stock and (b) the value of records in stock.
 def read_data():
@@ -223,21 +222,12 @@ def option_six():
         labels.append(label)
         bar_values.append(value)
 
-    x = np.arange(len(labels))
-    width = 0.35
-
-    fig, ax = plt.subplots()
-    ax.bar(x - width/7, bar_values, width, label='label')
-
-    ax.set_ylabel('test')
-    ax.set_title('test2')
-    ax.set_xticks(x)
-    ax.set_xticklabels(labels)
-    ax.legend()
-
-    fig.tight_layout()
+    plt.bar(labels, bar_values)
+    plt.title('title name')
+    plt.xlabel('Genres')
+    plt.ylabel('Stock Levels')
     plt.show()
-    clear_screen()
+
     # Need to write in a way to exit the graph so that the rest of the program can continue
 
 
