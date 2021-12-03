@@ -1,6 +1,5 @@
 # COM101 Assignment 1 coding project
 import matplotlib.pyplot as plt
-# import numpy as np
 
 # Creating a basic UI
 
@@ -20,6 +19,7 @@ def user_interface():
     print('7. Quit')
 
 
+# creating each user option
 # option 1 - Output a list of record titles and their respective details, including a summary report displaying
 # (a) the total number of titles in stock and (b) the value of records in stock.
 def read_data():
@@ -227,7 +227,6 @@ def option_six():
     plt.xlabel('Genres')
     plt.ylabel('Stock Levels')
     plt.show()
-
     # Need to write in a way to exit the graph so that the rest of the program can continue
 
 
