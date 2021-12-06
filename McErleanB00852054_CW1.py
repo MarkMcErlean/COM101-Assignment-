@@ -137,7 +137,6 @@ def add_records_show_summary():
         print_summary()
 
 
-
 # option 5 - Query if a record title is available and present option of
 # (a) increasing stock level or (b) decreasing the stock level, due to a sale.
 def check_available_increase_decrease():
@@ -176,7 +175,8 @@ def check_available_increase_decrease():
                 print('Must be a positive number only')
                 check_available_increase_decrease()  # run function again
             current_stock = int(titles_in_stock.get(query_record_titles))  # create variable with dictionary value
-            new_stock = current_stock + temp_stock  # add the two values together
+            print(current_stock)
+            new_stock = int(current_stock) + temp_stock  # add the two values together
 
             for temporary in file_contents_record_data:  # loop through list
                 if query_record_titles.lower() in temporary[1].lower():  # if the title is found in the loop
@@ -203,8 +203,6 @@ def check_available_increase_decrease():
 
         elif choice == 3:  # return to menu
             clear_screen()
-            print('\n')
-            options()
 
     else:  # if title not found, return to menu so that it can be added
         print('Item not found, please return to the menu to add this item...')
