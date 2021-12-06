@@ -137,6 +137,7 @@ def add_records_show_summary():
         print_summary()
 
 
+
 # option 5 - Query if a record title is available and present option of
 # (a) increasing stock level or (b) decreasing the stock level, due to a sale.
 def check_available_increase_decrease():
@@ -179,7 +180,7 @@ def check_available_increase_decrease():
 
             for temporary in file_contents_record_data:  # loop through list
                 if query_record_titles.lower() in temporary[1].lower():  # if the title is found in the loop
-                    if temporary[5] + new_stock >= temporary[5]:  # and if the value is more than or equal to temporary
+                    if int(temporary[5]) + int(new_stock) >= int(temporary[5]):  # if the value is >= to temporary
                         temporary[5] = new_stock  # change the stock level in the main list
                     else:
                         print('You cannot add negative stock...')
@@ -190,11 +191,11 @@ def check_available_increase_decrease():
                 print('Must be a positive number only')  # display error message and re-run function
                 check_available_increase_decrease()
             current_stock = int(titles_in_stock.get(query_record_titles))  # set current_stock to dictionary value
-            new_stock = current_stock - temp_stock  # subtract user input from current stock
+            new_stock = int(current_stock) - temp_stock  # subtract user input from current stock
 
             for temporary in file_contents_record_data:  # loop through main list
                 if query_record_titles.lower() in temporary[1].lower():  # if title is in the main list
-                    if temporary[5] - new_stock >= 0:  # amd the new value is zero or more
+                    if int(temporary[5]) - int(new_stock) >= 0:  # and the new value is zero or more
                         temporary[5] = new_stock  # change the stock value in the main list
                     else:
                         print('number entered is more than stock available')  # otherwise, show an error
@@ -202,6 +203,7 @@ def check_available_increase_decrease():
 
         elif choice == 3:  # return to menu
             clear_screen()
+            print('\n')
             options()
 
     else:  # if title not found, return to menu so that it can be added
@@ -224,9 +226,9 @@ def plot_bar_chart():
         bar_values.append(value)
 
     plt.bar(labels, bar_values)  # plot the x and y values
-    plt.title('Stock levels per genre')
+    plt.title('titles per genre')
     plt.xlabel('Genres')
-    plt.ylabel('Stock Levels')
+    plt.ylabel('Number of titles')
     plt.show()  # show the graph
 
 
